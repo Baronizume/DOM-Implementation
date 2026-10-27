@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Implementation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d3b70;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            color: #3156c9;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3156c9;
+            color: white;
+            padding: 10px 15px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d3b70;
+        }
+
+        #message {
+            color: green;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        #demoBox {
+            background-color: #e8edff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DOM Implementation Using JavaScript</h1>
+
+    <!-- 1. Registration Form -->
+    <div class="container">
+        <h2>1. Student Registration Form</h2>
+
+        <form id="registrationForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+
+            <label for="course">Select Course:</label>
+            <select id="course" required>
+                <option value="">Choose a course</option>
+                <option value="BCA">BCA</option>
+                <option value="BBA">BBA</option>
+                <option value="BA">BA</option>
+                <option value="BSc">BSc</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <!-- 2. Interactive Page Using Buttons -->
+    <div class="container">
+        <h2>2. Interactive Page Using Buttons</h2>
+
+        <div id="demoBox">
+            <p id="demoText">
+                Welcome! Click a button to interact.
+            </p>
+        </div>
+
+        <button type="button" id="changeText">
+            Change Text
+        </button>
+
+        <button type="button" id="changeColor">
+            Change Background
+        </button>
+
+        <button type="button" id="showAlert">
+            Show Alert
+        </button>
+
+        <button type="button" id="reset">
+            Reset
+        </button>
+    </div>
+
+    <script>
+        // Registration Form DOM Implementation
+
+        const form = document.getElementById("registrationForm");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const course = document.getElementById("course").value;
+
+            message.textContent =
+                "Registration successful! Welcome, " + name +
+                ". Your course is " + course + ".";
+
+            form.reset();
+        });
+
+        // Interactive Page DOM Implementation
+
+        const demoText = document.getElementById("demoText");
+        const demoBox = document.getElementById("demoBox");
+
+        // Change text
+        document.getElementById("changeText")
+            .addEventListener("click", function () {
+                demoText.textContent =
+                    "The text has been changed using DOM!";
+            });
+
+        // Change background color
+        document.getElementById("changeColor")
+            .addEventListener("click", function () {
+                const colors = ["lightgreen", "lightyellow",
+                    "lightpink", "lightblue"];
+
+                const randomColor =
+                    colors[Math.floor(Math.random() * colors.length)];
+
+                demoBox.style.backgroundColor = randomColor;
+            });
+
+        // Display alert
+        document.getElementById("showAlert")
+            .addEventListener("click", function () {
+                alert("Hello! This is a DOM button event.");
+            });
+
+        // Reset interactive page
+        document.getElementById("reset")
+            .addEventListener("click", function () {
+                demoText.textContent =
+                    "Welcome! Click a button to interact.";
+
+                demoBox.style.backgroundColor = "#e8edff";
+            });
+    </script>
+
+</body>
+
+</html>
